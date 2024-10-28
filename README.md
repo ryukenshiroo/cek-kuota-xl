@@ -35,4 +35,4 @@ Proyek ini dilisensikan di bawah MIT License.
 @ryukenshiroo – Pratama
 
 ## Laporan Bug
-Silakan laporkan bug [disinj](https://github.com/ryukenshiroo/cek-kuota-xl/issue).
+Silakan laporkan bug [disini](https://github.com/ryukenshiroo/cek-kuota-xl/issues).
