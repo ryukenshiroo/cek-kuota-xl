@@ -29,6 +29,12 @@ console.log("=================================");
 
 // Fungsi untuk login menggunakan email
 async function login() {
+    // Cek apakah file token sudah ada, jika ya berarti sudah login
+    if (fs.existsSync(tokenFile)) {
+        console.log("Anda sudah login.");
+        return; // Keluar dari fungsi jika sudah login
+    }
+
     const login_email = await prompt("Masukkan email: ");
     console.log(`Login ${login_email}...`);
 
@@ -107,7 +113,8 @@ async function cekKuotaData() {
                 'authorization': `Bearer ${accessToken}`,
                 'language': 'ID',
                 'version': '7.0.0',
-                'user-agent': 'okhttp/3.12.1'
+                'user-agent': 'okhttp/3.12.1',
+                'content-length': '0'
             }
         });
         if (response.data.statusCode === 200) {
