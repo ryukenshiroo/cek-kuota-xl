@@ -3,8 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const fileOutput = path.join('/tmp', 'xl.json'); // Menyimpan hasil JSON
-const tokenFile = path.join('/tmp', 'xl.token'); // Menyimpan token di path tetap
+const tmpFolder = path.join('./', 'tmp');
+if (!fs.existsSync(tmpFolder)) {
+    fs.mkdirSync(tmpFolder);
+}
+
+const fileOutput = path.join('./tmp', 'xl.json'); // Menyimpan hasil JSON
+const tokenFile = path.join('./tmp', 'xl.token'); // Menyimpan token di path tetap
 let accessToken = null;
 let refreshToken = null;
 
@@ -18,7 +23,6 @@ function prompt(question) {
     return new Promise((resolve) => rl.question(question, resolve));
 }
 
-// Judul aplikasi
 console.log("=================================");
 console.log("        Cek Kuota XL            ");
 console.log("=================================");
@@ -96,13 +100,13 @@ async function cekKuotaData() {
     console.log(`Cek kuota untuk nomor ${nomer_hp}...`);
 
     try {
-        const response = await axios.get(`https://srg-txl-utility-service.ext.dp.xl.co.id/v5/package/check/${nomer_hp}`, {
+        const response = await axios.get(`https://srg-txl-utility-service.ext.dp.xl.co.id/v5/package/v5.2/check/${nomer_hp}`, {
             headers: {
                 'x-dynatrace': 'MT_3_1_763403741_16-0_a5734da2-0ecb-4c8d-8d21-b008aeec4733_0_396_167',
                 'accept': 'application/json',
                 'authorization': `Bearer ${accessToken}`,
-                'language': 'en',
-                'version': '4.1.2',
+                'language': 'ID',
+                'version': '7.0.0',
                 'user-agent': 'okhttp/3.12.1'
             }
         });
